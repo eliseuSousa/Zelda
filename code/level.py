@@ -1,3 +1,4 @@
+from random import choice
 import pygame
 from settings import *
 from tile import Tile
@@ -19,7 +20,13 @@ class Level:
     def create_map(self):
 
         layouts = {
-            'boundary': import_csv_layout('../map/map_FloorBlocks.csv')
+            'boundary': import_csv_layout('../map/map_FloorBlocks.csv'),
+            'grass': import_csv_layout('../map/map_Grass.csv'),
+            'object': import_csv_layout('../map/map_Objects.csv'),
+        }
+
+        graphics = {
+            'grass': import_folder('../graphics/grass')
         }
 
         for style,layout in layouts.items():
@@ -29,7 +36,15 @@ class Level:
                         x = col_index*TILESIZE 
                         y = row_index*TILESIZE
                         if style == 'boundary':
-                            Tile((x,y),[self.visible_sprites,self.obstacle_sprites],'invisible')
+                            Tile((x,y),[self.obstacle_sprites],'invisible')
+                        if style == 'grass':
+                            # Creating grass
+                            random_grass_image = choice(graphics['grass'])
+                            Tile((x,y),[self.visible_sprites,self.obstacle_sprites],'grass',random_grass_image)
+                            
+                        if style == 'object':
+                            # Creating object
+                            pass
         # for row_index, row in enumerate(WORLD_MAP):
         #     for col_index, col in enumerate(row):
         #         x = col_index*TILESIZE
