@@ -46,16 +46,6 @@ class Level:
                         if style == 'object':
                              surf = graphics['objects'][int(col)]
                              Tile((x,y),[self.visible_sprites,self.obstacle_sprites],'object',surf)
-
-        # for row_index, row in enumerate(WORLD_MAP):
-        #     for col_index, col in enumerate(row):
-        #         x = col_index*TILESIZE
-        #         y = row_index*TILESIZE
-                
-        #         if col == 'x':
-        #             Tile((x, y),[self.visible_sprites, self.obstacle_sprites])
-        #         if col == 'p':
-        #             self.player = Player((x, y), [self.visible_sprites], self.obstacle_sprites)
         self.player = Player((2000, 1430), [self.visible_sprites], self.obstacle_sprites)
 
     def run(self):
