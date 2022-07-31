@@ -11,11 +11,21 @@ def import_csv_layout(path):
         return terrain_map
     
 def import_folder(path):
-    surface_list = []
+    lista_imagens = []
+
     for _,__, img_files in walk(path):
         for img in img_files:
             full_path = path+'/'+img
-            image_surf = pygame.image.load(full_path).convert_alpha()
-            surface_list.append(image_surf)
+            lista_imagens.append(full_path)
+    lista_imagens = sorted(lista_imagens)
+
+    return carrga_superfice(lista_imagens)
+
+def carrga_superfice(itens):
+    surface_list = []
     
+    for item in itens:
+        image_surf = pygame.image.load(item).convert_alpha()
+        surface_list.append(image_surf)
+
     return surface_list
